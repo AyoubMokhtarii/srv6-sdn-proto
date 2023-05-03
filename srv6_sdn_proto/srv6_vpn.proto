@@ -78,6 +78,8 @@ message TunnelInfo {
 message OverlaySlice {
   string deviceid = 1;
   string interface_name = 2;
+  string underlay_wan_id = 3;
+
 }
 
 /* Reports the outcome of a gRPC request command */
@@ -166,6 +168,7 @@ message Router {
         repeated string ext_ipv4_addrs = 7;
         repeated string ext_ipv6_addrs = 8;
         string type = 9;
+        string underlay_wan_id = 10;
     }
 
     string id = 1;
