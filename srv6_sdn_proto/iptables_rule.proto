@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+
+// The IPTablesRule message containing a number of iptables_rules.
+message IPTablesRuleRequest {
+  repeated IPTablesRule rules = 1;
+}
+
+// The IPTablesRule message encodes an iptables rule request
+message IPTablesRule {
+
+    // The table to which a chain should be added
+    string table = 1;
+    // The chain to which a rule should be added
+    string chain = 2;
+    // The protocol to match a packet against
+    string protocol = 3;
+    // The source IP address to match a packet against
+    string source_ip = 4;
+    // The destination IP address to match a packet against
+    string destination_ip = 5;
+    // The source port to match a packet against
+    string source_port = 6;
+    // The destination port to match a packet against
+    string destination_port = 7;
+    // The target to jump to if a packet matches the rule
+    string target_name = 8;
+
+    // The target value to set, some targets require a target value like MARK (--set-mark <value>)
+    string target_value = 9;
+}
+
