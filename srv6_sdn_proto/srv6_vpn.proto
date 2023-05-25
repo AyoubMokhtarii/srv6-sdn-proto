@@ -35,6 +35,9 @@ service NorthboundInterface {
   rpc UnregisterDevice (UnregisterDeviceRequest) returns (InventoryServiceReply) {}
   // Retrieve SID lists available between two edge devices
   rpc GetSIDLists (GetSIDListsRequest) returns (GetSIDListsReply) {}
+
+  // Create new Application/traffic identifier
+  rpc CreateAppIdentifier (ApplicationIdentifier) returns (OverlayServiceReply) {}
 }
 
 /* EnableDeviceRequest */
@@ -267,4 +270,40 @@ message SIDListInformation {
     repeated string direct_sid_list = 3;
     repeated string return_sid_list = 4;
     string tenantid = 5;
+}
+
+
+/* Application Identifier */
+message ApplicationIdentifier {
+  string device_name = 1;
+  string tenantid = 2 ;
+  string application_name = 3;
+  string description = 4;
+  string category = 5;
+  string service_class = 6;
+  string importance = 7;
+  repeated string paths = 8;
+  APPIdentifRule rules = 9;
+
+  // TODO change from one match to a list of matches (multiple rule matches support).
+  APPIdentifMatch matches = 10; 
+
+}
+
+message APPIdentifRule {
+  string source_ip = 1;
+  string destination_ip = 2;
+  string protocol = 3;
+  string source_port = 4;
+  string destination_port = 5;
+}
+
+message APPIdentifMatch {
+  string match_name =1 ;
+  repeated APPIdentifMatchAttributes match_attributes  = 2;
+}
+
+message APPIdentifMatchAttributes {
+  string attribute_name = 1 ; 
+  string attribute_value = 2;
 }

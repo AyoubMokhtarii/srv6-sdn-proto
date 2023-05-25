@@ -29,4 +29,6 @@ message Rule {
   string in_interface = 10;
   // Output interface for Interface Based (Policy Based) routing’s rule
   string out_interface = 11;
+  // Firewall mark classifier (Policy Based) routing’s rule 
+  int32 fwmark = 12;
 }

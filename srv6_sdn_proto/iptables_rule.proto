@@ -3,6 +3,7 @@ syntax = "proto3";
 
 // The IPTablesRule message containing a number of iptables_rules.
 message IPTablesRuleRequest {
+  
   repeated IPTablesRule rules = 1;
 }
 
@@ -28,5 +29,23 @@ message IPTablesRule {
 
     // The target value to set, some targets require a target value like MARK (--set-mark <value>)
     string target_value = 9;
+
+    // The rule Match 
+    // FIXME add support for multiple match in one rule
+    IPTablesRuleMatch match = 10 ;
+
 }
+
+
+message IPTablesRuleMatch {
+  string match_name = 1 ;
+  repeated IPTablesRuleMatchAttributes match_attributes = 2 ;
+
+}
+
+message IPTablesRuleMatchAttributes {
+  string attribute_name = 1 ; 
+  string attribute_value = 2;
+}
+
 
