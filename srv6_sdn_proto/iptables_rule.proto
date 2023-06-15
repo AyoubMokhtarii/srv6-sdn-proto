@@ -34,6 +34,12 @@ message IPTablesRule {
     // FIXME add support for multiple match in one rule
     IPTablesRuleMatch match = 10 ;
 
+    // The in interface
+    string in_interface = 11;
+
+    // The out interface
+    string out_interface = 12;
+
 }
 
 

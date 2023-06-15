@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+message TunnelsDelayRequest {
+    repeated TunnelDelay tunnels = 1;
+
+}
+
+
+
+
+// This message encodes the tunnel name (e.g vxlan-2) 
+// and the tunnel source and destination endpoints.
+
+// The delay of that tunnel is the response message.
+message TunnelDelay {
+    // the delay in milliseconds.
+    string tunnel_interface_name = 1;
+    string tunnel_src_endpoint = 2;
+    string tunnel_dst_endpoint = 3;
+    string tunnel_delay = 4;
+}

@@ -38,6 +38,23 @@ service NorthboundInterface {
 
   // Create new Application/traffic identifier
   rpc CreateAppIdentifier (ApplicationIdentifier) returns (OverlayServiceReply) {}
+
+  // Get Tunnels traffic statistics
+  rpc GetTunnelsTrafficStatistics (DeviceTunnelsTrafficStatsRequest) returns (OverlayServiceReply) {}
+
+  // 
+  rpc StartDelayMonitor (StartDelayMonitorRequest) returns (OverlayServiceReply) {}
+
+  rpc StopDelayMonitor (StopDelayMonitorRequest) returns (OverlayServiceReply) {}
+
+  rpc StartTrafficMonitor (StartTrafficMonitorRequest) returns (OverlayServiceReply) {}
+
+  rpc StopTrafficMonitor (StopTrafficMonitorRequest) returns (OverlayServiceReply) {}
+
+  rpc GetDelayMonitoringStats (GetDelayMonitoringStatsRequest) returns (OverlayServiceReply) {}
+
+  rpc GetTrafficMonitoringStats (GetTrafficMonitoringStatsRequest) returns (OverlayServiceReply) {}
+
 }
 
 /* EnableDeviceRequest */
@@ -306,4 +323,39 @@ message APPIdentifMatch {
 message APPIdentifMatchAttributes {
   string attribute_name = 1 ; 
   string attribute_value = 2;
+}
+
+
+message DeviceTunnelsTrafficStatsRequest {
+  string tenantid = 1;
+  string device_name = 2;
+}
+
+
+message StartDelayMonitorRequest{
+  string tenantid = 1;
+  bool start = 2; 
+}
+
+message StopDelayMonitorRequest{
+  string tenantid = 1;
+  bool stop = 2; 
+}
+
+message StartTrafficMonitorRequest{
+  string tenantid = 1;
+  bool start = 2; 
+}
+
+message StopTrafficMonitorRequest{
+  string tenantid = 1;
+  bool stop = 2; 
+}
+
+message GetDelayMonitoringStatsRequest{
+  string tenantid = 1;
+}
+
+message GetTrafficMonitoringStatsRequest{
+  string tenantid = 1;
 }
