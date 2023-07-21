@@ -47,6 +47,10 @@ service NorthboundInterface {
 
   rpc StopDelayMonitor (StopDelayMonitorRequest) returns (OverlayServiceReply) {}
 
+  rpc StartTrafficAdaptation (StartTrafficAdaptationRequest) returns (OverlayServiceReply) {}
+
+  rpc StopTrafficAdaptation (StopTrafficAdaptationRequest) returns (OverlayServiceReply) {}
+
   rpc StartTrafficMonitor (StartTrafficMonitorRequest) returns (OverlayServiceReply) {}
 
   rpc StopTrafficMonitor (StopTrafficMonitorRequest) returns (OverlayServiceReply) {}
@@ -299,11 +303,20 @@ message ApplicationIdentifier {
   string category = 5;
   string service_class = 6;
   string importance = 7;
-  repeated string paths = 8;
-  APPIdentifRule rules = 9;
+  Paths paths = 8;
+  
+  APPIdentifRule rules = 9; //FIXME: make it iterable. 
 
   // TODO change from one match to a list of matches (multiple rule matches support).
   APPIdentifMatch matches = 10; 
+
+}
+
+message Paths{
+  string mode = 1;
+  repeated string paths = 2;
+  string policy = 3;
+  float delay_threshold = 4;
 
 }
 
@@ -341,6 +354,19 @@ message StopDelayMonitorRequest{
   string tenantid = 1;
   bool stop = 2; 
 }
+
+
+message StartTrafficAdaptationRequest{
+  string tenantid = 1;
+  bool start = 2; 
+}
+
+message StopTrafficAdaptationRequest{
+  string tenantid = 1;
+  bool stop = 2; 
+}
+
+
 
 message StartTrafficMonitorRequest{
   string tenantid = 1;
